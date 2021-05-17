@@ -35,7 +35,7 @@ module SeastyleCrawler
                     exit
                 end
                 # load moderation....
-                sleep(rand*15)
+                sleep(rand*10)
                 output = res.body
             end
             output = URI.decode_www_form_component(output).sub(/success:/, '')
