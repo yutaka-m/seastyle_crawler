@@ -59,7 +59,7 @@ module SeastyleCrawler
         end
 
         def print_form(filter, reserve_status)
-            if @debug
+            if false
                 print "marinas"
                 p @marinas
                 print "boats"
@@ -83,12 +83,15 @@ module SeastyleCrawler
             end
 
             # print
+            output = ""
             matched_reservelist.each do |m|
                 tb = @boats.select { |b| b['boat_cd'] == m['boat_cd'] }.first
-                if m['rsv_sts'] == reserve_status
-                    print("#{m['rsv_sts']} #{m['marina_cd']} #{m['rsv_date']} #{tb['boat_model_name']} #{m['avail_time_from']} - #{m['avail_time_to']} #{tb['half_fee']} #{tb['currency_name']} / #{tb['full_fee']} #{tb['currency_name']}\n")
+                if m['rsv_sts'].to_i == reserve_status
+                    output += sprintf("#{m['rsv_sts']} #{m['marina_cd']} #{m['rsv_date']} #{tb['boat_model_name']} #{m['avail_time_from']} - #{m['avail_time_to']} #{tb['half_fee']} #{tb['currency_name']} / #{tb['full_fee']} #{tb['currency_name']}\n")
+                    p output
                 end
             end
+            output
         end
     end
 end

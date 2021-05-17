@@ -37,11 +37,12 @@ YAML_EOT
 
       ssr = SeastyleCrawler::Ssreserve.new(config["date_strategy"], config["boat_type"], config["marina_cd"], 
         config["target_boats"], config["site"], config["reserve_status"], config["debug"])
-      ssr.run
+      output = ssr.run
 
       if config["debug"]
         print "End.\n"
       end
+      output
     end
   end
 end

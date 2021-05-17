@@ -1,5 +1,5 @@
 require "seastyle_crawler/manager"
-require "Date"
+require "date"
 
 module SeastyleCrawler
     class Ssreserve
@@ -36,7 +36,8 @@ module SeastyleCrawler
             }
 
             # print difference reservations.
-            manager.print_form(@target_boats, @reserve_status)
+            output = manager.print_form(@target_boats, @reserve_status)
+            output
         end
 
         def generateDate()
