@@ -1,0 +1,9 @@
+---
+date_strategy: weekend
+boat_type: 1
+marina_cd: "<marina code>"
+target_boats:
+- "SR-X"
+site: '<reserve status api url>'
+print_reserve_status: 2
+debug: false
