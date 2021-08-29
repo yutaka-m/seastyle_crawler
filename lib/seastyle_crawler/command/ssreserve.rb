@@ -25,7 +25,7 @@ module SeastyleCrawler
         def run
             manager = SeastyleCrawler::Manager.new(@site, @debug)
             # generate dates
-            datelist = generateDate()
+            datelist = generateDate(@date_strategy)
             # get boat number
             boat_type = @boat_type
             # get marina code
@@ -40,18 +40,27 @@ module SeastyleCrawler
             output
         end
 
-        def generateDate()
+        def generateDate(strategy)
             d = Date.today
             fin = Date.today + 30
-            sat_delta_days = (6 - d.wday)
-            sun_delta_days = (7 - d.wday)
-            weekends = []
-            while d < (fin - 7) do
-                weekends.push((d + sat_delta_days).strftime("%Y/%m/%d"))
-                weekends.push((d + sun_delta_days).strftime("%Y/%m/%d"))
-                d = d + 7
+            days = []
+            
+            case(strategy)
+            when "everyday" then
+                while d < fin do
+                    days.push((d + 1).strftime("%Y/%m/%d"))
+                    d = d + 1
+                end
+            when "weekend" then
+                sat_delta_days = (6 - d.wday)
+                sun_delta_days = (7 - d.wday)
+                while d < (fin - 7) do
+                    days.push((d + sat_delta_days).strftime("%Y/%m/%d"))
+                    days.push((d + sun_delta_days).strftime("%Y/%m/%d"))
+                    d = d + 7
+                end
             end
-            weekends
+            days
         end
     end
 end
