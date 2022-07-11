@@ -47,6 +47,7 @@ module SeastyleCrawler
             
             case(strategy)
             when "everyday" then
+                d = d + 7
                 while d < fin do
                     days.push((d + 1).strftime("%Y/%m/%d"))
                     d = d + 1
